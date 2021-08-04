@@ -1,0 +1,11 @@
+# PostGres ENVS
+export PGUSER="postgres"
+export PGHOST="host.docker.internal"
+export PGDATABASE="product"
+export PGPASSWORD="changeme"
+export PGPORT="5432"
+
+# Currency API Variables
+export CURRENCYAPIHOST="http://api.currencylayer.com/live"
+export CURRENCYAPIKEY="884fee8553898aac87d367b2bdbc2cfe"
+export CURRENCYAPITIMEOUT="10000"

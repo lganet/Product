@@ -1,0 +1,10 @@
+{ "live": 
+    {
+        "success": true,
+        "terms": "https://currencylayer.com/terms",
+        "privacy": "https://currencylayer.com/privacy",
+        "timestamp": 1627905184,
+        "source": "USD",
+        "quotes": { "USDCAD": 1.24725, "USDEUR": 0.841574, "USDGBP": 0.719755 }
+    }
+}

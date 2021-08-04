@@ -1,0 +1,1 @@
+export const GenericError = "Something went terribly horribly wrong! We've logged the error. Please try again or contact us and we'll get back to you as soon as possible.";

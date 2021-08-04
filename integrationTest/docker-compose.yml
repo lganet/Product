@@ -1,0 +1,48 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container_test
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+       - ./../sqls/product.sql:/docker-entrypoint-initdb.d/product.sql
+    ports:
+      - "5433:5432"
+    networks:
+      - postgres
+    restart: unless-stopped 
+
+  nodeproduct:
+    container_name: product_integration_test
+    image: node:16.5.0
+    build: /usr/app/
+    command: node /usr/app/index.js
+    environment:
+      PGUSER: "postgres"
+      PGHOST: "host.docker.internal"
+      PGDATABASE: "product"
+      PGPASSWORD: "changeme"
+      PGPORT: "5433"
+      CURRENCYAPIHOST: "http://api.currencylayer.com/live"
+      CURRENCYAPIKEY: "884fee8553898aac87d367b2bdbc2cfe"
+      CURRENCYAPITIMEOUT: "10000"
+    volumes:
+       - ./..:/usr/app/
+    ports:
+      - "3000:3000"
+    restart: unless-stopped 
+
+networks:
+  postgres:
+    driver: bridge
+  nodeproduct:
+    driver: bridge
+
+volumes:
+    postgres:
+    nodeproduct:
